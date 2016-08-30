@@ -1,6 +1,9 @@
 #!/bin/bash
 
 AEGIR_VERSION=7.x-3.x
+AEGIR_MAKEFILE=http://cgit.drupalcode.org/provision/plain/aegir.make?h=$AEGIR_VERSION
+AEGIR_HOSTMASTER_PATH=hostmaster-$AEGIR_VERSION
+
 echo "==========================ÆGIR=========================="
 echo " Hello there.                                           "
 echo " Let's prepare a development environment for you.       "
@@ -14,9 +17,9 @@ fi
 cd aegir-home
 
 # Build a full hostmaster frontend on the host with drush make, with working-copy option.
-if [ ! -d hostmaster-$AEGIR_VERSION ]; then
+if [ ! -d $AEGIR_HOSTMASTER_PATH ]; then
    echo "Æ | Building hostmaster with drush make..."
-   drush make http://cgit.drupalcode.org/provision/plain/aegir.make?h=$AEGIR_VERSION hostmaster-$AEGIR_VERSION --working-copy --no-gitinfofile
+   drush make $AEGIR_MAKEFILE $AEGIR_HOSTMASTER_PATH --working-copy --no-gitinfofile
 fi
 
 # Clone drush packages.
